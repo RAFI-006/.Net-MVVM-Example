@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="#FEDBOE"     
+             x:Name="PeopleDetails"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
+             x:Class="Brainer.View.PeopleDetail">
+
+
+    <StackLayout  Orientation="Vertical"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="#041F5A"  >
+            <StackLayout
+                Margin="10,10,10,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand"  >
+
+                <ImageButton Source="back_buttton_arrow.png" HeightRequest="25" WidthRequest="25" VerticalOptions="CenterAndExpand"  HorizontalOptions="Start" Command="{Binding Path=BindingContext.BackButtonClicked,Source={x:Reference PeopleDetails}}"  BackgroundColor="Transparent"  Margin="5,5,5,5"  />
+
+            <BoxView
+                    WidthRequest="10"
+                    />
+
+            <Label   Text="People Detail" TextColor="White"  FontSize="20"  VerticalTextAlignment="Center"/>
+        </StackLayout>
+        </StackLayout>
+
+        <Grid Margin="0,0,0,0" RowSpacing="0.6" BackgroundColor="Black"    AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"  >
+            <Grid.RowDefinitions  >
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="20*"/>
+            
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="30*"/>
+            </Grid.RowDefinitions>
+            <ff:CachedImage   Grid.Row="0" Grid.Column="0" Source="{Binding ImageUrl}" Aspect="Fill" BackgroundColor="White" LoadingPlaceholder="default_image.png" ErrorPlaceholder="default_image.png" >
+                 </ff:CachedImage>
+            <StackLayout  Grid.Row="1" Grid.Column="0"   Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"   BackgroundColor="#f6c640">
+                <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness"
+                      iOS="0,10,0,10"  
+                            >
+                    </OnPlatform>
+                </StackLayout.Padding>
+                <StackLayout   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Vertical"   >
+                    <Label   Grid.Row="1" TextColor="White"  Text="{Binding Name}"   HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" />
+                    <Label Grid.Row="2" TextColor="LightGoldenrodYellow"  Text="{Binding Designation}"   HorizontalOptions="CenterAndExpand" FontSize="Medium"    />
+               
+                <StackLayout Grid.Row="3"  HorizontalOptions="CenterAndExpand"  Orientation="Horizontal"   >
+                    <Image   WidthRequest="20" Margin="5,0,0,0"  HeightRequest="20"  Source="placeholder.png" />
+                    <Label Margin="2,0,0,0" Text="{Binding officeLocation}"  VerticalTextAlignment="Center" Font="Medium" TextColor="White" FontAttributes="Bold" />
+                   
+                </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout  Margin="0,0,0,0" Spacing="0" Grid.Row="2" Grid.Column="0" Orientation="Horizontal" BackgroundColor="#FEE23E">
+                <Image Source="energy.png" Margin="40,0,0,0"  HorizontalOptions="Center" WidthRequest="50" HeightRequest="50"   />
+                <Label Grid.Row="1"  Margin="10,0,0,0" Text="Energy Solutions " VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" TextColor="Black" />
+            </StackLayout>
+
+            <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Vertical"  VerticalOptions="FillAndExpand" >
+                <ListView  ItemsSource="{Binding ratingList}" SeparatorColor="Black" SelectionMode="None" SeparatorVisibility="Default"  Grid.Row="3" Grid.Column="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="#FEE23E"  HasUnevenRows="True" x:Name="list" >
+                    <ListView.Header >
+                        <StackLayout Orientation="Vertical" >
+                            <StackLayout Margin="40,2,0,0"  Orientation="Horizontal" >
+                                <Image Source="ic_groupimg.png" Margin="0,2,0,0"  WidthRequest="20" HorizontalOptions="Start" HeightRequest="20"></Image>
+                                <Label Text="Consulting" Margin="0,2,0,0" TextColor="Black" FontSize="Medium" />
+                            </StackLayout>
+
+                            <BoxView 
+            HeightRequest="0.5" 
+            BackgroundColor="Black" 
+            HorizontalOptions="FillAndExpand" />
+                            <StackLayout Margin="40,2,0,0"  Orientation="Horizontal" >
+                                <Image Source="ic_groupimg.png" Margin="0,2,0,0"  WidthRequest="20" HorizontalOptions="Start" HeightRequest="20"></Image>
+                                <Label Text="Downstream" Margin="0,2,0,0"  TextColor="Black"  FontSize="Medium" />
+                            </StackLayout>
+
+                            <BoxView 
+                                HeightRequest="0.5" 
+            BackgroundColor="Black" 
+            HorizontalOptions="FillAndExpand" />
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Margin="40,2,0,0"  Orientation="Horizontal" >
+                                    <Image Source="ic_email.png" Margin="0,2,0,0"  WidthRequest="20" HorizontalOptions="Start" HeightRequest="20"></Image>
+                                    <Label Text="{Binding Email}" Margin="0,2,0,0" TextColor="Black"  FontSize="Medium" />
+                                </StackLayout>
+                                <BoxView  
+                            HeightRequest="0.5" 
+            BackgroundColor="Black" 
+            HorizontalOptions="FillAndExpand" />
+                                <StackLayout Margin="40,2,0,0"  Orientation="Horizontal" >
+                                    <Image Source="ic_imgmobile.png"  WidthRequest="20" Margin="0,2,0,0"  HeightRequest="20" HorizontalOptions="Start"></Image>
+                                    <Label Text="{Binding Phone}" Margin="0,2,0,0" TextColor="Black"  FontSize="Medium" />
+                                </StackLayout>
+                                <BoxView 
+            HeightRequest="0.5" 
+            BackgroundColor="Black" 
+            HorizontalOptions="FillAndExpand" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ListView.Header>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="0,0,0,0" Margin="0,2,0,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+                                    <StackLayout Margin="30,5,0,0" Orientation="Horizontal" WidthRequest="140" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+                                        <Label Text="{Binding skillName}" VerticalTextAlignment="Start" Font="Bold,Medium" TextColor="Black"  />
+                                      
+                                    </StackLayout>
+
+                                    <StackLayout  Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="50,2,10,10"   VerticalOptions="EndAndExpand" >
+
+
+                                        <ImageButton Source="like.png" HeightRequest="20" WidthRequest="20" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand"  Command="{Binding Path=BindingContext.EndorseButtonClicked,Source={x:Reference PeopleDetails}}" CommandParameter="{Binding .}" BackgroundColor="Transparent"  >
+                                            <ImageButton.Triggers>
+                                                <DataTrigger TargetType="ImageButton" Binding="{Binding IsLike}" Value="True">
+                                                    <Setter Property="Source" Value="dislike.png" />
+                                                </DataTrigger>
+                                            </ImageButton.Triggers>
+                                        </ImageButton>
+                                        <Label  Margin="50,0,5,0" VerticalTextAlignment="Center"  FontSize="Large" TextColor="Blue"   >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer   Command="{Binding Path=BindingContext.ViewEndosersTapped , Source={x:Reference PeopleDetails}}" CommandParameter="{Binding .}"/>
+                                            </Label.GestureRecognizers>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding ratings.Count}" TextDecorations="Underline"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                         
+                                        </Label>
+
+
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                      </StackLayout>
+        </Grid>
+
+    
+  
+
+   
+    </StackLayout>
+
+</ContentPage>

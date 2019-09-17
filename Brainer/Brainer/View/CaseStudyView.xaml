@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="CaseStudy"
+             xmlns:behavior="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+           
+           BackgroundColor="#FEDBOE"
+             x:Class="Brainer.View.CaseStudyView">
+    
+    <ContentPage.Content>
+        
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical">
+
+            <ListView x:Name="listView" BackgroundColor="#FEE23E" SeparatorColor="Black"  SeparatorVisibility="Default"
+                                   HasUnevenRows="True"
+                      
+                                  SelectedItem="{Binding Path=BindingContext.CaseStudySelectedModel,Source={x:Reference CaseStudy},Mode=TwoWay}"
+                                  ItemsSource="{Binding caseStudyDocumentList}"  >
+               
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout HeightRequest="80"  HorizontalOptions="Fill"  Orientation="Horizontal">
+
+                                <Image WidthRequest="45"  Margin="10,0,0,0" HeightRequest="45" Source="ic_casestudy_document.png" />
+                                <StackLayout   HeightRequest="80" Orientation="Vertical" Margin="5,20,0,20" >
+                                    <Label Text="{Binding title}" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                                    </Label>
+                              
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="ItemTapped" 
+                                  Command="{Binding Path=BindingContext.CaseStudyItemSelected,Source={x:Reference CaseStudy}}" />
+                </ListView.Behaviors>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

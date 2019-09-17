@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            BackgroundColor="#FEDBOE"
+               xmlns:behavior="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+               
+              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"        
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="SearchTabView"
+          
+             x:Class="Brainer.View.SearchTab">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <SearchBar 
+                   BackgroundColor="#FEDBOE"              
+                   Placeholder="Search"
+                
+                Text="{Binding SearchText}"
+                SearchCommandParameter="{Binding .}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="FillAndExpand" >
+
+                <SearchBar.Behaviors>
+
+                    <behavior:EventToCommandBehavior EventName="TextChanged" Command="{Binding Path=BindingContext.TextChangeController,Source={x:Reference SearchTabView}}" CommandParameter="{Binding .}" />
+                </SearchBar.Behaviors>
+            </SearchBar>
+
+            <ListView x:Name="listView"   
+                               HasUnevenRows="true"
+                             
+                               SelectedItem="{Binding Source={x:Reference SearchTabView},Path=BindingContext.SelectedEmployeeModel}"
+                         BackgroundColor="#FEDBOE"
+                      ItemsSource="{Binding EmployeeList }"
+                      
+               
+                          >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal"  >
+                                <ff:CachedImage WidthRequest="44" HeightRequest="44" Source="{ Binding employee.photoBlobId}" ErrorPlaceholder="default_image.png" LoadingPlaceholder="default_image.png"  CacheType="Memory" DownsampleToViewSize="true" />
+                                <StackLayout Padding="5,0,5,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
+                                    <Label Text="{Binding employee.getFullName}" VerticalTextAlignment="Center" Font="Medium" TextColor="Black" />
+
+                                </StackLayout>
+
+
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="ItemTapped" 
+                                  Command="{Binding SearchListItemSelected}" />
+                </ListView.Behaviors>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

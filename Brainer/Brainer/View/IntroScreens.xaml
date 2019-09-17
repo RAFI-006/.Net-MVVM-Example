@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="Brainer.View.IntroScreens"
+             x:Name="IntroScreen"
+             BackgroundColor="#f6c640">
+    <ContentPage.Content>
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0.5" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Here will be CarouselView  -->
+            <ContentView Grid.Row="0">
+
+                <controls:CarouselViewControl ItemsSource="{Binding IntroSlides}"
+                                          ShowIndicators="True"
+                                          ShowArrows="False"
+                                           
+                                          x:Name="courselView"
+                                          IndicatorsTintColor="DarkGray"
+                                          CurrentPageIndicatorTintColor="Blue">
+           
+                <controls:CarouselViewControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                               
+                                <ContentView >
+
+                                    <Frame Grid.Row="0" Padding="10,30,10,30" Margin="20,50,20,50" BackgroundColor="White" CornerRadius="30"  BorderColor="#041f5a">
+                                   
+                                        <Image Source="{Binding Image}" Aspect="AspectFit" >
+                                            <Image.Margin>
+                                                <OnPlatform x:TypeArguments="Thickness"
+                               
+                                 iOS="10,50,10,20"
+                             />
+                                            </Image.Margin>
+                                        </Image>
+                                    </Frame>
+
+                                </ContentView>
+                                <ContentView Grid.Row="0" VerticalOptions="End" HorizontalOptions="End" Padding="10,5,10,10"  >
+
+                                    <Label x:Name="label" Text="Done" TextColor="Black" FontSize="20" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="StartAndExpand" IsVisible="{Binding IsVisible}"  >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="onTap" CommandParameter="{Binding .}"  Command="{Binding Path=BindingContext.SkipButtonClicked  , Source={x:Reference IntroScreen}}" NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                </ContentView>
+
+                            </Grid>
+                        </DataTemplate>
+                    </controls:CarouselViewControl.ItemTemplate>
+                </controls:CarouselViewControl>
+
+            </ContentView>
+        </Grid>
+
+
+    </ContentPage.Content>
+
+</ContentPage>

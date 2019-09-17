@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.kbr.Brainer" android:installLocation="auto" android:versionCode="223" android:versionName="10">
+	<uses-sdk android:targetSdkVersion="28" android:minSdkVersion="22" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<application android:label="Brainer.Android" android:icon="@drawable/ic_blackbrainer"></application>
+</manifest>

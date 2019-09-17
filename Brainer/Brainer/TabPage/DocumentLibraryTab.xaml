@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:expandable="clr-namespace:Expandable;assembly=ExpandableView"
+             BackgroundColor="#FEDBOE"
+             x:Name="DocumentTab"
+             xmlns:behavior="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+               
+             x:Class="Brainer.TabPage.DocumentLibraryTab">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Image Source="brain.png" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" />
+            <Label Text="Document Library" Margin="0,10,0,10"  HorizontalOptions="CenterAndExpand"  HorizontalTextAlignment="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+
+        <StackLayout  HorizontalOptions="FillAndExpand"
+                      Orientation="Vertical"
+                      VerticalOptions="StartAndExpand">
+
+            <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0,10,0,10">
+
+
+
+                <StackLayout
+                    Orientation="Vertical"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start">
+
+                    <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand"
+                    >
+                        <Image Source="energy.png"  Margin="10,0,0,0" HeightRequest="30"
+                           
+                           WidthRequest="30"
+                           />
+                        <Label Text="Energy Solutions"
+                               VerticalTextAlignment="Start"
+                           FontSize="Large"
+                              
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           
+                           />
+                        <Image Source="arrow_down.png" HeightRequest="30"
+                           
+                           WidthRequest="30"/>
+
+                    </StackLayout>
+                </StackLayout>
+
+
+                <BoxView 
+            HeightRequest="1.8" 
+            BackgroundColor="Black" 
+            HorizontalOptions="FillAndExpand" />
+
+            </StackLayout>
+
+
+            <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+
+                <expandable:ExpandableView 
+                                   HorizontalOptions="FillAndExpand"
+                                 
+                                   VerticalOptions="FillAndExpand">
+                    <expandable:ExpandableView.PrimaryView>
+
+                        <StackLayout
+                    Orientation="Vertical"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start">
+
+
+                            <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand"
+                    >
+                                <Image Source="ic_casestudy_document.png" Margin="10,0,0,0" HeightRequest="30"
+                           
+                           WidthRequest="30"
+                           />
+                                <Label Text="Case Study"
+                               VerticalTextAlignment="Center"
+                           FontSize="Large"
+                              HorizontalOptions="StartAndExpand"
+                           FontAttributes="Bold"
+                        
+                           VerticalOptions="Start"
+                           
+                           />
+                                <Image Source="arrow_down.png"  HorizontalOptions="End" HeightRequest="30"
+                           
+                           WidthRequest="30"/>
+
+
+
+                            </StackLayout>
+                        
+                            <BoxView 
+            HeightRequest="1.8" 
+            BackgroundColor="Black" 
+            HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+                    </expandable:ExpandableView.PrimaryView>
+
+                    <expandable:ExpandableView.SecondaryViewTemplate >
+
+                        <DataTemplate>
+                            <ListView x:Name="listView"  
+                                   HasUnevenRows="True"
+                                      SeparatorColor="Black"
+                                      BackgroundColor="#FEE23E"  
+                                      Margin="5,0,0,0"
+                                      SelectedItem="{Binding Path= BindingContext.SelectedDocumentModel  ,Source={x:Reference DocumentTab}, Mode=TwoWay}"
+                                      SeparatorVisibility="Default"
+                                  ItemsSource="{Binding   DocumentCategoriesList}"  >
+                                <ListView.ItemTemplate >
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout HeightRequest="50"  Orientation="Vertical">
+
+                                                <StackLayout HorizontalOptions="FillAndExpand"  BackgroundColor="#FEE23E"   HeightRequest="50" Orientation="Vertical" Margin="10,10,0,10">
+                                                    <Label Text="{Binding subDocumentName}"  BackgroundColor="#FEE23E"  FontAttributes="Bold"  VerticalTextAlignment="Start" FontSize="Medium" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                                    </Label>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                                <ListView.Behaviors>
+                                    <behavior:EventToCommandBehavior EventName="ItemTapped" 
+                                  Command="{Binding  DocumentTabItemSelected}" />
+
+                                </ListView.Behaviors>
+                            </ListView>
+
+                        </DataTemplate>
+                    </expandable:ExpandableView.SecondaryViewTemplate>
+
+                </expandable:ExpandableView>
+
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

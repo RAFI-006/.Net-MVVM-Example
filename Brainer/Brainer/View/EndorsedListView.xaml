@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          BackgroundColor="#041F5A"
+             x:Name="EndorsedList"
+    x:Class="Brainer.View.EndorsedListView">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout
+                Margin="10,10,10,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand"  >
+
+                <ImageButton Source="back_buttton_arrow.png" HeightRequest="25" WidthRequest="25" VerticalOptions="CenterAndExpand"  HorizontalOptions="Start" CommandParameter="{Binding .}"   Command="{Binding Path=BindingContext.BackButtonClicked , Source={x:Reference EndorsedList}}" BackgroundColor="Transparent"  Margin="5,5,5,5"  />
+
+                <BoxView
+                    WidthRequest="10"
+                    />
+
+                <Label   Text="Endorsement List" TextColor="White"  FontSize="20"  VerticalTextAlignment="Center"/>
+            </StackLayout>
+
+            <ListView SeparatorColor="Black" SeparatorVisibility="Default"   HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="#FEE23E"  HasUnevenRows="True" ItemsSource="{Binding EndorsedList}">
+            <ListView.ItemTemplate>
+                
+                <DataTemplate>
+                    <ViewCell>
+                            <StackLayout Padding="0,0,0,0" Margin="30,2,0,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal" >
+                            <StackLayout Margin="20,5,0,0" Orientation="Horizontal"  VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+
+                                <Label Text="{Binding employeeName}"  MaxLines="1" VerticalTextAlignment="Start" Font="Bold,Medium" TextColor="Black"  />
+
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+   </ContentPage>

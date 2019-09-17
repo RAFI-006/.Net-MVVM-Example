@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             x:Name="SigninActivtiy"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:centry="clr-namespace:Brainer.CustomRender"
+             BackgroundColor="#041f5A"
+             NavigationPage.HasNavigationBar="False"
+             
+              x:Class="Brainer.View.SignInActivity">
+
+    <ContentPage.Content>
+        <ScrollView>     
+            <Grid Margin="30,30,30,30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+
+
+            <Image Source="brain.png" Grid.Row="0" Grid.Column="0" HeightRequest="50" WidthRequest="50" />
+            <Frame Padding="0, 0, 0, 0" Margin="0,10,0,0"  CornerRadius="5" Grid.Row="1" Grid.Column="0" BorderColor="Black" BackgroundColor="White">
+                <StackLayout Orientation="Horizontal" >
+                    <Image Source="ic_email.png" Margin="10,0,0,0"  WidthRequest="30" HeightRequest="30"   >
+                    </Image>
+                    <centry:BorderlessEntry x:Name="username" Grid.Row="1"   Placeholder="Email-id" PlaceholderColor="#bababa" FontSize="Medium" HorizontalOptions="FillAndExpand" ReturnType="Next" Text="{Binding Username}"  />
+
+                </StackLayout>
+            </Frame>
+
+            <Frame Padding="0, 0, 0, 0"   Margin="0,10,0,0"  CornerRadius="5" Grid.Row="2" Grid.Column="0" BorderColor="Black" BackgroundColor="White">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="password.png" Margin="10,0,0,0"  WidthRequest="30" HeightRequest="30"  >
+                    </Image>
+                    <centry:BorderlessEntry  x:Name="password"  Grid.Row="2" Placeholder="Pasword"    HorizontalOptions="FillAndExpand"  IsPassword="True"  PlaceholderColor="#bababa"  FontSize="16" ReturnType="Done" Text="{Binding Password}" />
+                </StackLayout>
+            </Frame>
+
+            <ActivityIndicator 
+				IsVisible="{Binding IsVisibled.ToString()}"
+                IsRunning="{Binding IsVisibled}"
+
+              
+                
+                HorizontalOptions="CenterAndExpand" 
+                VerticalOptions="CenterAndExpand"
+				BackgroundColor="Transparent"
+                Color="Red"
+			
+                />
+
+            <StackLayout Spacing="10"  Grid.Row="3" Grid.Column="0"  >
+                <Button BorderColor="Black"  CornerRadius="2"
+   
+       BorderWidth="1"  Margin="0,10,0,0" Text="Login" BackgroundColor="#fedb0e" TextColor="Black" HeightRequest="50" Grid.Row="3"  Command="{Binding Path=BindingContext.SignInButton_Clikced, Source={x:Reference SigninActivtiy}}"   />
+            </StackLayout>
+        </Grid>
+        </ScrollView>
+
+    </ContentPage.Content>
+
+</ContentPage>

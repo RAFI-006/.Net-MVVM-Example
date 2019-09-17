@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behavior="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+            
+             BackgroundColor="#FEDBOE"
+             x:Name="AddSkills"
+             NavigationPage.HasBackButton="True"
+             NavigationPage.HasNavigationBar="True"
+             
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title="Add Skills"
+             x:Class="Brainer.View.AddSkillsView">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="#041F5A">
+            <StackLayout
+                Margin="10,10,10,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+
+                <ImageButton Source="back_buttton_arrow.png" HeightRequest="25" WidthRequest="25" VerticalOptions="CenterAndExpand"  HorizontalOptions="Start"  CommandParameter="{}}"   Command="{Binding Path=BindingContext.BackButtonClicked, Source={x:Reference AddSkills}}"  BackgroundColor="Transparent"  Margin="5,5,5,5"  />
+
+            <BoxView
+                    WidthRequest="10"
+                    />
+
+            <Label   Text="Add Skills" TextColor="White"  FontSize="20"  VerticalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical" HeightRequest="300" HorizontalOptions="FillAndExpand">
+
+                
+                
+              <ListView  x:Name="existingSkillsList" SeparatorColor="Black" SeparatorVisibility="Default"   HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="#FEE23E"  HasUnevenRows="False"
+                         ItemsSource="{Binding updateSkills}"
+                       
+                         >
+                    <ListView.Header   >
+                        <StackLayout Margin="15,15,15,15" Orientation="Horizontal"  VerticalOptions="StartAndExpand" >
+                            <Label Text="Exisitng Skills" FontAttributes="Bold" TextColor="#041f5A"  HorizontalOptions="FillAndExpand" FontSize="20" Margin="10" ></Label>
+                            <Label  Text="{Binding  updateSkills.Count}" TextColor="#041f5A" HorizontalOptions="EndAndExpand" FontSize="25"  FontAttributes="Bold" ></Label>
+
+                        </StackLayout>
+
+                    </ListView.Header>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="10,10,10,10" Orientation="Horizontal" >
+
+                                    <Label Text="{Binding skillName}"  MaxLines="1"  Font="Bold,Medium" TextColor="Black"  HorizontalOptions="FillAndExpand" />
+
+                                    <Switch   x:Name="SwitchForRemovingSkills"   IsToggled="True" OnColor="#FFFFFF"
+                                            
+                                        
+                                           
+                                    HorizontalOptions="EndAndExpand"
+                             >
+                                        <Switch.Behaviors>
+                                            <behavior:EventToCommandBehavior EventName="Toggled" Command="{Binding Path=BindingContext.SwitchToggledForRemovingSkills,Source={x:Reference skillsList}}" CommandParameter="{Binding .}"></behavior:EventToCommandBehavior>
+                                        </Switch.Behaviors>
+
+
+                                    </Switch>
+                                </StackLayout>
+
+
+                            </ViewCell>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+            </StackLayout>
+        <ListView x:Name="skillsList" SeparatorColor="Black" SeparatorVisibility="Default"   HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="#FEE23E"  HasUnevenRows="False" ItemsSource="{Binding getAllSkillsList}">
+            <ListView.Header >
+                    <StackLayout Margin="15,15,15,15" Orientation="Horizontal"  VerticalOptions="StartAndExpand">
+                        <Label Text="Add Skills" FontAttributes="Bold" TextColor="#041f5A"  HorizontalOptions="FillAndExpand" FontSize="20" Margin="10"  ></Label>
+
+                        <Label Text="{Binding getAllSkillsList.Count}"     HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#041f5A"  FontSize="25" ></Label>
+
+                    </StackLayout>
+
+                </ListView.Header>
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="10,10,10,10" Orientation="Horizontal" >
+
+                            <Label Text="{Binding skillName}"  MaxLines="1"  Font="Bold,Medium" TextColor="Black"  HorizontalOptions="FillAndExpand" />
+
+                                <Switch  x:Name="SwitchForAddingSkills"     IsToggled="false" OnColor="#FFFFFF"
+
+                                    HorizontalOptions="EndAndExpand"
+                                     >
+                                    <Switch.Behaviors>
+                                        <behavior:EventToCommandBehavior EventName="Toggled" Command="{Binding Path=BindingContext.SwitchToggledForAddingSkills,Source={x:Reference skillsList}}" CommandParameter="{Binding .}"></behavior:EventToCommandBehavior>
+                                    </Switch.Behaviors>
+
+
+                                </Switch>
+                            </StackLayout>
+
+                    </ViewCell>
+                </DataTemplate>
+            
+            </ListView.ItemTemplate>
+        </ListView>
+           
+            <Button
+                Margin="5,5,5,5"
+                BackgroundColor="#041f5A"
+                Text="Save Skills"
+                TextColor="White"
+                CommandParameter="{Binding .}"  
+                Command="{Binding Path=BindingContext.SubmitButtonClicked, Source={x:Reference AddSkills}}" 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="StartAndExpand"
+                
+                
+                />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
